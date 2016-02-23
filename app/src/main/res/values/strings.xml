@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Sunshine</string>
+    <string name="app_name">jWeather</string>
     <string name="day_label">Today, February 19</string>
     <string name="action_settings">Settings</string>
     <string name="action_refresh">Refresh</string>
