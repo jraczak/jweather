@@ -1,6 +1,9 @@
 package com.justinraczak.android.jWeather.app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -42,10 +45,23 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
+        else if (id == R.id.action_view_location) {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            String userLocation = prefs.getString(getString(R.string.pref_location_key),
+                    getString(R.string.pref_location_default));
+            String geo = "geo:0,0?q=";
+            Uri location = Uri.parse(geo + userLocation);
+            viewLocation(location);
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
-
+    public void viewLocation(Uri location) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(location);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
-
+}
