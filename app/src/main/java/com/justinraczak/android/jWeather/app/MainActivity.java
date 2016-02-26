@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -46,18 +47,22 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         else if (id == R.id.action_view_location) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            String userLocation = prefs.getString(getString(R.string.pref_location_key),
-                    getString(R.string.pref_location_default));
-            String geo = "geo:0,0?q=";
-            Uri location = Uri.parse(geo + userLocation);
-            viewLocation(location);
+
+            viewLocation();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void viewLocation(Uri location) {
+    public void viewLocation() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String userLocation = prefs.getString(getString(R.string.pref_location_key),
+                getString(R.string.pref_location_default));
+        Uri location = Uri.parse("geo:0,0?").buildUpon()
+                .appendQueryParameter("q", userLocation)
+                .build();
+        Log.d("MainActivity", location.toString());
+
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(location);
         if (intent.resolveActivity(getPackageManager()) != null) {

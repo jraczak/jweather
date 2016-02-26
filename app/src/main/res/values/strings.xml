@@ -6,6 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_view_location">View Location</string>
+    <string name="action_share_forecast">Share</string>
 
     <string name="title_activity_detail">Detailed Forecast</string>
     <string name="title_activity_settings">Settings</string>
@@ -29,5 +30,8 @@
 
 
     <string name="hello_world">Hello world!</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
