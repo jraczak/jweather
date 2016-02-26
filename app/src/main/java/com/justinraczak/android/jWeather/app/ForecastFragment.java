@@ -24,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ShareActionProvider;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -115,6 +116,11 @@ public class ForecastFragment extends Fragment {
                 //       .show();
             }
         });
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String location = prefs.getString(getString(R.string.pref_location_key),
+                getString(R.string.pref_location_default));
+        TextView textView = (TextView) rootView.findViewById(R.id.forecast_list_header);
+        textView.setText("The forecast for " + location);
 
         return rootView;
     }
